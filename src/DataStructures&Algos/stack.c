@@ -3,7 +3,7 @@
  *
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
- * @brief A dynamic floating-point array obeying the FIFO rule.
+ * @brief A dynamic array obeying the FIFO rule.
  *
  * @copyright Copyright (c) 2024, ajwestley.me
  *
@@ -23,7 +23,7 @@ Stack *stack_new(unsigned int size)
 
     stack = malloc(sizeof(Stack));
 
-    stack->items = malloc(size * sizeof(double));
+    stack->items = malloc(size * sizeof(Item));
     if (!stack->items) {
         free(stack);
         return NULL;
@@ -40,7 +40,7 @@ void stack_free(Stack *stack) {
     free(stack);
 }
 
-int push(double item, Stack *stack) {
+int push(Item item, Stack *stack) {
     if (stack->length == stack->_allocated) {
         int successful = change_size(2 * stack->length, stack);
         if (!successful) return FAILURE;
@@ -50,12 +50,12 @@ int push(double item, Stack *stack) {
     return SUCCESS;
 }
 
-double pop(Stack *stack) {
+Item pop(Stack *stack) {
     stack->length--;
     return stack->items[stack->length];
 }
 
-double peek(Stack *stack) {
+Item peek(Stack *stack) {
     return stack->items[stack->length - 1];
 }
 
@@ -63,7 +63,7 @@ void clear(Stack *stack) {
     stack->length = 0;
 }
 
-int find(double item, Stack *stack) {
+int find(Item item, Stack *stack) {
     double err = 1 / 1048576;
     for (int i = 0; i < stack->length; i++) {
         if (fabs(stack->items[i] - item) < err) return i;
@@ -71,7 +71,7 @@ int find(double item, Stack *stack) {
     return -1;
 }
 
-int contains(double item, Stack *stack) {
+int contains(Item item, Stack *stack) {
     return find(item, stack) == -1 ? FALSE : TRUE;
 }
 

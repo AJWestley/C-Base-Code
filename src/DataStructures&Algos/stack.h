@@ -3,7 +3,7 @@
  *
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
- * @brief A dynamic integer array obeying the FIFO rule.
+ * @brief A dynamic array obeying the FIFO rule.
  *
  * To construct a Stack, use @ref stack_new.
  * To destruct an Stack, use @ref stack_free.
@@ -28,12 +28,18 @@
 #define SUCCESS 1
 #define FAILURE 0
 
+// Define this as the datatype you wish the stack to be.
+// Can be done in the file this is incuded by defining Item before the include.
+#ifndef Item
+#define Item double
+#endif
+
 /**
  * @brief Definition of a @ref Stack.
  */
 typedef struct _Stack {
     /** Entries in the stack */
-    int *items;
+    Item *items;
     /** Length of the stack */
     unsigned int length;
     /** Allocated length of the stack.*/
@@ -63,7 +69,7 @@ void stack_free(Stack *stack);
  * 
  * @return 1 if the push was successful, 0 otherwise
  */
-int push(int item, Stack *stack);
+int push(Item item, Stack *stack);
 
 /**
  * @brief Remove an item from the top of the stack.
@@ -72,7 +78,7 @@ int push(int item, Stack *stack);
  * 
  * @return The item that was removed, NULL if the stack is empty.
  */
-int pop(Stack *stack);
+Item pop(Stack *stack);
 
 /**
  * @brief Gets the top element of a stack.
@@ -81,7 +87,7 @@ int pop(Stack *stack);
  * 
  * @return The top item, NULL if the stack is empty.
  */
-int peek(Stack *stack);
+Item peek(Stack *stack);
 
 /**
  * @brief Empties a stack.
@@ -98,7 +104,7 @@ void clear(Stack *stack);
  * 
  * @return The index of the sought after item, -1 if the item was not found.
  */
-int find(int item, Stack *stack);
+int find(Item item, Stack *stack);
 
 /**
  * @brief Finds whether an item is in a stack or not.
@@ -108,7 +114,7 @@ int find(int item, Stack *stack);
  * 
  * @return 1 if the stack contains the item, 0 otherwise.
  */
-int contains(int item, Stack *stack);
+int contains(Item item, Stack *stack);
 
 /**
  * @brief Checks if a stack contains any items.
@@ -117,7 +123,7 @@ int contains(int item, Stack *stack);
  * 
  * @return 1 if the stack is empty, 0 otherwise.
  */
-int empty(Stack *stack);
+int stack_empty(Stack *stack);
 
 /**
  * @brief Changes the size of a stack.
@@ -127,7 +133,7 @@ int empty(Stack *stack);
  * 
  * @return 1 if the change was successful, 0 otherwise.
  */
-int resize(int new_size, Stack *stack);
+int stack_resize(int new_size, Stack *stack);
 
 /**
  * @brief Reduces the size of a stack to its length.
@@ -136,7 +142,7 @@ int resize(int new_size, Stack *stack);
  * 
  * @return 1 if the change was successful, 0 otherwise.
  */
-int compress(Stack *stack);
+int stack_compress(Stack *stack);
 
 /**
  * @brief Prints the contents of the stack.
