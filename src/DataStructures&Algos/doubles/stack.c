@@ -3,7 +3,7 @@
  *
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
- * @brief A dynamic array obeying the FIFO rule.
+ * @brief A dynamic floating-point array obeying the FIFO rule.
  *
  * @copyright Copyright (c) 2024, ajwestley.me
  *
@@ -12,6 +12,8 @@
 #include "stack.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+#include <math.h>
 
 Stack *stack_new(unsigned int size)
 {
@@ -21,7 +23,7 @@ Stack *stack_new(unsigned int size)
 
     stack = malloc(sizeof(Stack));
 
-    stack->items = malloc(size * sizeof(Item));
+    stack->items = malloc(size * sizeof(double));
     if (!stack->items) {
         free(stack);
         return NULL;
@@ -34,15 +36,11 @@ Stack *stack_new(unsigned int size)
 }
 
 void stack_free(Stack *stack) {
-    ItemFreeFunc free_item = stack->_free_item;
-    for (int i = 0; i < stack->length; i++) {
-        free_item(stack->items[i]);
-    }
     free(stack->items);
     free(stack);
 }
 
-int push(Item item, Stack *stack) {
+int push(double item, Stack *stack) {
     if (stack->length == stack->_allocated) {
         int successful = change_size(2 * stack->length, stack);
         if (!successful) return FAILURE;
@@ -52,12 +50,12 @@ int push(Item item, Stack *stack) {
     return SUCCESS;
 }
 
-Item pop(Stack *stack) {
+double pop(Stack *stack) {
     stack->length--;
     return stack->items[stack->length];
 }
 
-Item peek(Stack *stack) {
+double peek(Stack *stack) {
     return stack->items[stack->length - 1];
 }
 
@@ -65,25 +63,26 @@ void clear(Stack *stack) {
     stack->length = 0;
 }
 
-int find(Item item, Stack *stack, CompareFunc cmp) {
+int find(double item, Stack *stack) {
+    double err = 1 / 1048576;
     for (int i = 0; i < stack->length; i++) {
-        if (cmp(stack->items[i], item) == 0) return i;
+        if (fabs(stack->items[i] - item) < err) return i;
     }
     return -1;
 }
 
-int contains(Item item, Stack *stack, CompareFunc cmp) {
-    return find(item, stack, cmp) == -1 ? FALSE : TRUE;
+int contains(double item, Stack *stack) {
+    return find(item, stack) == -1 ? FALSE : TRUE;
 }
 
-void empty(Stack *stack) {
+int empty(Stack *stack) {
     return stack->length == 0 ? TRUE : FALSE;
 }
 
 int change_size(int new_size, Stack *stack) {
     if (new_size < stack->length) return FAILURE;
 
-    Item *items = realloc(stack->items, sizeof(Item) * new_size);
+    int *items = realloc(stack->items, sizeof(int) * new_size);
 
     if (!items) return FAILURE;
 

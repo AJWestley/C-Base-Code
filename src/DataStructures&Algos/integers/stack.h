@@ -3,7 +3,7 @@
  *
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
- * @brief A dynamic array obeying the FIFO rule.
+ * @brief A dynamic integer array obeying the FIFO rule.
  *
  * To construct a Stack, use @ref stack_new.
  * To destruct an Stack, use @ref stack_free.
@@ -29,33 +29,15 @@
 #define FAILURE 0
 
 /**
- * @brief The type of a value to be stored in an @ref ArrayList.
- *        (void *) can be changed to int, long, or other types if needed.
- */
-typedef void *Item;
-
-/**
- * @brief Callback function to free the items in the stack.
- */
-typedef void (*ItemFreeFunc)(Item item);
-
-/**
- * @brief Callback function to compare items in the stack.
- */
-typedef int (*CompareFunc)(const void *, const void*);
-
-/**
  * @brief Definition of a @ref Stack.
  */
 typedef struct _Stack {
     /** Entries in the stack */
-    Item *items;
+    int *items;
     /** Length of the stack */
     unsigned int length;
     /** Allocated length of the stack.*/
     unsigned int _allocated;
-    /** Callback function to free the stack items */
-    ItemFreeFunc _free_item;
 } Stack;
 
 /**
@@ -81,7 +63,7 @@ void stack_free(Stack *stack);
  * 
  * @return 1 if the push was successful, 0 otherwise
  */
-int push(Item item, Stack *stack);
+int push(int item, Stack *stack);
 
 /**
  * @brief Remove an item from the top of the stack.
@@ -90,7 +72,7 @@ int push(Item item, Stack *stack);
  * 
  * @return The item that was removed, NULL if the stack is empty.
  */
-Item pop(Stack *stack);
+int pop(Stack *stack);
 
 /**
  * @brief Gets the top element of a stack.
@@ -99,7 +81,7 @@ Item pop(Stack *stack);
  * 
  * @return The top item, NULL if the stack is empty.
  */
-Item peek(Stack *stack);
+int peek(Stack *stack);
 
 /**
  * @brief Empties a stack.
@@ -116,7 +98,7 @@ void clear(Stack *stack);
  * 
  * @return The index of the sought after item, -1 if the item was not found.
  */
-int find(Item item, Stack *stack, int (*cmp)());
+int find(int item, Stack *stack);
 
 /**
  * @brief Finds whether an item is in a stack or not.
@@ -126,7 +108,7 @@ int find(Item item, Stack *stack, int (*cmp)());
  * 
  * @return 1 if the stack contains the item, 0 otherwise.
  */
-int contains(Item item, Stack *stack, int (*cmp)());
+int contains(int item, Stack *stack);
 
 /**
  * @brief Checks if a stack contains any items.
@@ -135,7 +117,7 @@ int contains(Item item, Stack *stack, int (*cmp)());
  * 
  * @return 1 if the stack is empty, 0 otherwise.
  */
-void empty(Stack *stack);
+int empty(Stack *stack);
 
 /**
  * @brief Changes the size of a stack.
@@ -145,7 +127,7 @@ void empty(Stack *stack);
  * 
  * @return 1 if the change was successful, 0 otherwise.
  */
-int change_size(int new_size, Stack *stack);
+int resize(int new_size, Stack *stack);
 
 /**
  * @brief Reduces the size of a stack to its length.
@@ -155,5 +137,12 @@ int change_size(int new_size, Stack *stack);
  * @return 1 if the change was successful, 0 otherwise.
  */
 int compress(Stack *stack);
+
+/**
+ * @brief Prints the contents of the stack.
+ *
+ * @param stack The stack to be printed.
+ */
+void print_stack(Stack *stack);
 
 #endif
