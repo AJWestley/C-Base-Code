@@ -22,30 +22,40 @@
 #ifndef WESTLEY_STACK_H
 #define WESTLEY_STACK_H
 
+#define TRUE 1
+#define FALSE 0
+
+#define SUCCESS 1
+#define FAILURE 0
+
 /**
  * @brief The type of a value to be stored in an @ref ArrayList.
  *        (void *) can be changed to int, long, or other types if needed.
  */
-typedef union item {
-    char c;
-    short s;
-    int i;
-    long l;
-    float f;
-    double d;
-    long double ld;
-} Item;
+typedef void *Item;
+
+/**
+ * @brief Callback function to free the items in the stack.
+ */
+typedef void (*ItemFreeFunc)(Item item);
+
+/**
+ * @brief Callback function to compare items in the stack.
+ */
+typedef int (*CompareFunc)(const void *, const void*);
 
 /**
  * @brief Definition of a @ref Stack.
  */
 typedef struct _Stack {
-    /** Entries in the array */
+    /** Entries in the stack */
     Item *items;
-    /** Length of the array */
+    /** Length of the stack */
     unsigned int length;
-    /** Allocated length of the array.*/
+    /** Allocated length of the stack.*/
     unsigned int _allocated;
+    /** Callback function to free the stack items */
+    ItemFreeFunc _free_item;
 } Stack;
 
 /**
@@ -92,6 +102,13 @@ Item pop(Stack *stack);
 Item peek(Stack *stack);
 
 /**
+ * @brief Empties a stack.
+ *
+ * @param stack The stack to be emptied.
+ */
+void clear(Stack *stack);
+
+/**
  * @brief Gets the index of an item in a stack.
  *
  * @param item The item to be searched for.
@@ -99,14 +116,7 @@ Item peek(Stack *stack);
  * 
  * @return The index of the sought after item, -1 if the item was not found.
  */
-int find(Item item, Stack *stack);
-
-/**
- * @brief Empties a stack.
- *
- * @param stack The stack to be emptied.
- */
-void clear(Stack *stack);
+int find(Item item, Stack *stack, int (*cmp)());
 
 /**
  * @brief Finds whether an item is in a stack or not.
@@ -116,7 +126,16 @@ void clear(Stack *stack);
  * 
  * @return 1 if the stack contains the item, 0 otherwise.
  */
-int contains(Item item, Stack *stack);
+int contains(Item item, Stack *stack, int (*cmp)());
+
+/**
+ * @brief Checks if a stack contains any items.
+ *
+ * @param stack The stack to be checked.
+ * 
+ * @return 1 if the stack is empty, 0 otherwise.
+ */
+void empty(Stack *stack);
 
 /**
  * @brief Changes the size of a stack.
