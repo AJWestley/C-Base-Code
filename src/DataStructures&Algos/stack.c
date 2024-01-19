@@ -11,7 +11,6 @@
 
 #include "stack.h"
 #include <stdlib.h>
-#include <string.h>
 #include <stdio.h>
 #include <math.h>
 
@@ -22,6 +21,7 @@ Stack *stack_new(unsigned int size)
     if (size == 0) size = 4;
 
     stack = malloc(sizeof(Stack));
+    if (!stack) return NULL;
 
     stack->items = malloc(size * sizeof(Item));
     if (!stack->items) {
@@ -42,7 +42,7 @@ void stack_free(Stack *stack) {
 
 int push(Item item, Stack *stack) {
     if (stack->length == stack->_allocated) {
-        int successful = change_size(2 * stack->length, stack);
+        int successful = resize(2 * stack->length, stack);
         if (!successful) return FAILURE;
     }
     stack->items[stack->length] = item;
@@ -50,9 +50,10 @@ int push(Item item, Stack *stack) {
     return SUCCESS;
 }
 
-Item pop(Stack *stack) {
+int pop(Stack *stack) {
+    if (stack->length = 0) return FAILURE;
     stack->length--;
-    return stack->items[stack->length];
+    return SUCCESS;
 }
 
 Item peek(Stack *stack) {
@@ -63,23 +64,19 @@ void clear(Stack *stack) {
     stack->length = 0;
 }
 
-int find(Item item, Stack *stack) {
+int contains(Item item, Stack *stack) {
     double err = 1 / 1048576;
     for (int i = 0; i < stack->length; i++) {
-        if (fabs(stack->items[i] - item) < err) return i;
+        if (fabs(stack->items[i] - item) < err) return TRUE;
     }
-    return -1;
-}
-
-int contains(Item item, Stack *stack) {
-    return find(item, stack) == -1 ? FALSE : TRUE;
+    return FALSE;
 }
 
 int empty(Stack *stack) {
     return stack->length == 0 ? TRUE : FALSE;
 }
 
-int change_size(int new_size, Stack *stack) {
+int resize(int new_size, Stack *stack) {
     if (new_size < stack->length) return FAILURE;
 
     int *items = realloc(stack->items, sizeof(int) * new_size);
@@ -93,6 +90,5 @@ int change_size(int new_size, Stack *stack) {
 }
 
 int compress(Stack *stack) {
-    int successful = change_size(stack->length, stack);
-    return successful;
+    return resize(stack->length, stack);
 }

@@ -4,16 +4,28 @@ A few handy C utilities for my own use.
 
 ## Implemented
 
-### Data Structures and Algorithms:
+### Data Structures and Algorithms
 - Stack
 
 ## In Progress:
 
-## To Do List:
+### Data Structures and Algorithms
 
-### Data Structures and Algorithms:
 #### Collections:
 - Array List
+
+### Maths
+
+#### Linear Algebra:
+- Vector
+  - Dot Product
+  - Cross Product
+
+## To Do List:
+
+### Data Structures and Algorithms
+
+#### Collections:
 - Linked List
 - Queue
 - Hash Map
@@ -46,9 +58,6 @@ A few handy C utilities for my own use.
   - Euclidean Distance
   - Manhattan Distance
 #### Linear Algebra:
-- Vector
-  - Dot Product
-  - Cross Product
 - Matrix
   - Matrix Addition 
   - Matrix Subtraction

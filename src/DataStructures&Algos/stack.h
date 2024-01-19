@@ -50,9 +50,9 @@ typedef struct _Stack {
  * @brief Allocate a new Stack for use.
  *
  * @param length The initial length of Stack.
- * @return Stack*
+ * @returns Stack*
  */
-Stack *stack_new(unsigned int length);
+Stack *stack_new(unsigned int size);
 
 /**
  * @brief Destroy a Stack and free back the memory.
@@ -67,7 +67,7 @@ void stack_free(Stack *stack);
  * @param item The item to be pushed onto the stack.
  * @param stack The stack to push onto.
  * 
- * @return 1 if the push was successful, 0 otherwise
+ * @returns 1 if the push was successful, 0 otherwise
  */
 int push(Item item, Stack *stack);
 
@@ -76,16 +76,16 @@ int push(Item item, Stack *stack);
  *
  * @param stack The stack to be popped from.
  * 
- * @return The item that was removed, NULL if the stack is empty.
+ * @returns 1 if the item was popped successfully, 0 otherwise.
  */
-Item pop(Stack *stack);
+int pop(Stack *stack);
 
 /**
  * @brief Gets the top element of a stack.
  *
  * @param stack The stack to be evaluated.
  * 
- * @return The top item, NULL if the stack is empty.
+ * @returns The top item, NULL if the stack is empty.
  */
 Item peek(Stack *stack);
 
@@ -97,22 +97,12 @@ Item peek(Stack *stack);
 void clear(Stack *stack);
 
 /**
- * @brief Gets the index of an item in a stack.
- *
- * @param item The item to be searched for.
- * @param stack The stack to be searched.
- * 
- * @return The index of the sought after item, -1 if the item was not found.
- */
-int find(Item item, Stack *stack);
-
-/**
  * @brief Finds whether an item is in a stack or not.
  *
  * @param item The item to be searched for.
  * @param stack The stack to be searched.
  * 
- * @return 1 if the stack contains the item, 0 otherwise.
+ * @returns 1 if the stack contains the item, 0 otherwise.
  */
 int contains(Item item, Stack *stack);
 
@@ -121,9 +111,9 @@ int contains(Item item, Stack *stack);
  *
  * @param stack The stack to be checked.
  * 
- * @return 1 if the stack is empty, 0 otherwise.
+ * @returns 1 if the stack is empty, 0 otherwise.
  */
-int stack_empty(Stack *stack);
+int empty(Stack *stack);
 
 /**
  * @brief Changes the size of a stack.
@@ -131,24 +121,17 @@ int stack_empty(Stack *stack);
  * @param new_size The new size of the stack.
  * @param stack The stack to be altered.
  * 
- * @return 1 if the change was successful, 0 otherwise.
+ * @returns 1 if the change was successful, 0 otherwise.
  */
-int stack_resize(int new_size, Stack *stack);
+int resize(int new_size, Stack *stack);
 
 /**
  * @brief Reduces the size of a stack to its length.
  *
  * @param stack The stack to be compressed.
  * 
- * @return 1 if the change was successful, 0 otherwise.
+ * @returns 1 if the change was successful, 0 otherwise.
  */
-int stack_compress(Stack *stack);
-
-/**
- * @brief Prints the contents of the stack.
- *
- * @param stack The stack to be printed.
- */
-void print_stack(Stack *stack);
+int compress(Stack *stack);
 
 #endif
