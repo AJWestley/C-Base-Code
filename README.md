@@ -59,4 +59,7 @@ A few handy C utilities for my own use.
 - Fourier Analysis:
 - - Fourier Matrix
 - - Radix-2 FFT
-- Sieve of Eratosthenes
+- Statistics:
+- - Probability Distributions
+- Misc:
+- - Sieve of Eratosthenes
