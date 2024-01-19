@@ -4,14 +4,11 @@
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
  * @brief A dynamic array operating like Python's 'Lists'.
- *
- * @copyright Copyright (c) 2024, ajwestley.me
- *
+ * 
  */
 
 #include "array_list.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 ArrayList *array_list_new(unsigned int size) {

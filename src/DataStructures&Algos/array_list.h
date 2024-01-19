@@ -4,20 +4,8 @@
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
  * @brief A dynamic array operating like Python's 'Lists'.
- *
- * To construct an Array List, use @ref array_list_new.
- * To destruct an Array List, use @ref array_list_free.
- *
- * To add an element to an Stack, use @ref append 
- * or @ref array_list_insert.
- *
- * To remove a value from an ArrayList, use @ref remove 
- * or @ref remove_index.
- *
- *
+ * 
  * @date 19-01-2024
- *
- * @copyright Copyright (c) 2024, ajwestley.me
  *
  */
 

@@ -5,13 +5,10 @@
  *
  * @brief A dynamic array obeying the FIFO rule.
  *
- * @copyright Copyright (c) 2024, ajwestley.me
- *
  */
 
 #include "stack.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 
 Stack *stack_new(unsigned int size)

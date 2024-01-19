@@ -5,18 +5,7 @@
  *
  * @brief A dynamic array obeying the FIFO rule.
  *
- * To construct a Stack, use @ref stack_new.
- * To destruct an Stack, use @ref stack_free.
- *
- * To add an element to an Stack, use @ref stack_push.
- *
- * To remove a value from an ArrayList, use @ref stack_pop.
- *
- *
- * @date 18-01-2024
- *
- * @copyright Copyright (c) 2024, ajwestley.me
- *
+ * @date 19-01-2024
  */
 
 #ifndef WESTLEY_STACK_H
