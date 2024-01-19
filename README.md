@@ -34,27 +34,27 @@ A few handy C utilities for my own use.
 ### Maths
 #### Co-ordinates:
 - Point2D
-- - 2D Cartesian
-- - Polar
-- - To 3D Point
+  - 2D Cartesian
+  - Polar
+  - To 3D Point
 - Point3D
-- - 3D Cartesian
-- - Spherical
-- - Cylindrical
-- - To 2D Point
+  - 3D Cartesian
+  - Spherical
+  - Cylindrical
+  - To 2D Point
 - Distance Measures:
-- - Euclidean Distance
-- - Manhattan Distance
+  - Euclidean Distance
+  - Manhattan Distance
 #### Linear Algebra:
 - Vector
-- - Dot Product
-- - Cross Product
+  - Dot Product
+  - Cross Product
 - Matrix
-- - Matrix Addition 
-- - Matrix Subtraction
-- - Matrix Multiplication
-- - Hadamard Product
-- - Matrix Transpose
+  - Matrix Addition 
+  - Matrix Subtraction
+  - Matrix Multiplication
+  - Hadamard Product
+  - Matrix Transpose
 - Eigenvectors & Eigenvalues
 #### Fourier Analysis:
 - Fourier Matrix
