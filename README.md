@@ -9,6 +9,7 @@ A few handy C utilities for my own use.
 #### Collections:
 - Stack
 - Linked List
+- Queue
 
 ### Maths
 
@@ -23,7 +24,6 @@ A few handy C utilities for my own use.
 
 #### Collections:
 - Array List
-- Queue
 
 ### Maths
 #### Co-ordinates:
