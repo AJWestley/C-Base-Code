@@ -13,6 +13,12 @@ A few handy C utilities for my own use.
 
 ### Maths
 
+#### Co-ordinates:
+- Point2D
+  - Polar Conversion
+  - Euclidean Distance
+  - Manhattan Distance
+
 #### Linear Algebra:
 - Generic Vector
 - 2D Vector
@@ -24,13 +30,10 @@ A few handy C utilities for my own use.
 
 #### Collections:
 - Array List
+- Hash Map
 
 ### Maths
 #### Co-ordinates:
-- Point2D
-  - 2D Cartesian
-  - Polar
-  - To 3D Point
 - Point3D
   - 3D Cartesian
   - Spherical
@@ -45,7 +48,6 @@ A few handy C utilities for my own use.
 ### Data Structures and Algorithms
 
 #### Collections:
-- Hash Map
 - Heap
 #### Trees:
 - Binary Search Tree
