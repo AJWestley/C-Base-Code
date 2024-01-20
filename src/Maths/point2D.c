@@ -12,10 +12,10 @@
 #include <math.h>
 
 Point2D point_new(double x, double y) {
-    Point2D cart;
-    cart.x = x;
-    cart.y = y;
-    return cart;
+    Point2D p;
+    p.x = x;
+    p.y = y;
+    return p;
 }
 
 double get_polar_r(Point2D p) {
@@ -23,8 +23,7 @@ double get_polar_r(Point2D p) {
 }
 
 double get_polar_theta(Point2D p) {
-    if (p.x == 0 || p.y == 0) return 0;
-    return p.x == 0 || p.y == 0 ? 0 : atan(p.y / p.x);
+    return p.x == 0 || p.y == 0 ? 0 : atan2(p.y, p.x);
 }
 
 double manhattan_distance(Point2D a, Point2D b) {

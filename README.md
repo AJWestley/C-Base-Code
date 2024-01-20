@@ -37,8 +37,6 @@ A few handy C utilities for my own use.
 - Point3D
   - 3D Cartesian
   - Spherical
-  - Cylindrical
-  - To 2D Point
 - Distance Measures:
   - Euclidean Distance
   - Manhattan Distance

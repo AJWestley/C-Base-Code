@@ -32,7 +32,7 @@ typedef struct point2D {
 Point2D point_new(double x, double y);
 
 /**
- * @brief Converts the value of the polar distance from origin, r.
+ * @brief Calculates the value of the polar distance from origin, r.
  *
  * @param p The 2D Point to be converted.
  *
@@ -41,7 +41,7 @@ Point2D point_new(double x, double y);
 double get_polar_r(Point2D p);
 
 /**
- * @brief Converts the value of the polar angle from x-axis, theta.
+ * @brief Calculates the value of the polar angle from x-axis, theta.
  *
  * @param p The 2D Point to be converted.
  *
