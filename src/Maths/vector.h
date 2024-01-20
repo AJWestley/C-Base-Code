@@ -3,20 +3,22 @@
  *
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
- * @brief A static, mutable, 1D Vector with all associated operations.
+ * @brief A static, mutable, Vector with all associated operations.
  *
  * @date 19-01-2024
  *
  */
 
-#ifndef WESTLEY_ARRAY_LIST_H
-#define WESTLEY_ARRAY_LIST_H
+#ifndef WESTLEY_VECTOR_H
+#define WESTLEY_VECTOR_H
 
 #define TRUE 1
 #define FALSE 0
 
 #define SUCCESS 1
 #define FAILURE 0
+
+#define MIN(a, b) a < b ? a : b
 
 /**
  * @brief Definition of a @ref Vector
@@ -53,25 +55,6 @@ Vector *zero_vector(unsigned int length);
 void vector_free(Vector *vector);
 
 /**
- * @brief Gets the value at a particular index of a Vector.
- * 
- * @param index The index to get.
- * @param vector The Vector to get from.
- * 
- * @returns The value at the given index.
-*/
-double get_component(int index, Vector *vector);
-
-/**
- * @brief Sets the value at a particular index of a Vector.
- * 
- * @param index The index to set.
- * @param value The value to set it to.
- * @param vector The vector to set.
- */
-void set_component(int index, double value, Vector *vector);
-
-/**
  * @brief Pads a Vector with the given value.
  * 
  * @param length How long to make the Vector.
@@ -99,20 +82,10 @@ int trim(unsigned int length, Vector *vector);
  * @param b The second Vector.
  * 
  * @returns The dot product of a and b, if a and be are not
- *          the same length, a Vector with length 0 is returned.
+ *          the same length, the excess components of the larger 
+ *          Vector are skipped.
 */
 double dot(Vector *a, Vector *b);
-
-/**
- * @brief Calculates the cross product of two 3D Vectors.
- * 
- * @param a The first Vector.
- * @param b The second Vector.
- * 
- * @returns The cross product of a and b, if a and b are not 
- *          both 3D, a Vector with length 0 is returned.
-*/
-Vector *cross_3D(Vector *a, Vector *b);
 
 /**
  * @brief Calculates the sum of two Vectors.
@@ -121,7 +94,7 @@ Vector *cross_3D(Vector *a, Vector *b);
  * @param b The second Vector.
  *
  * @returns The sum of a and b, if a and b are not the same 
- *          length, a Vector with length 0 is returned.
+ *          length, returns NULL.
  */
 Vector *vector_add(Vector *a, Vector *b);
 
@@ -132,7 +105,7 @@ Vector *vector_add(Vector *a, Vector *b);
  * @param b The second Vector.
  *
  * @returns The difference between a and b, if a and b are not 
- *          the same length, a Vector with length 0 is returned.
+ *          the same length, returns NULL.
  */
 Vector *vector_subtract(Vector *a, Vector *b);
 
@@ -142,16 +115,9 @@ Vector *vector_subtract(Vector *a, Vector *b);
  * @param vector The Vector to be negated.
  *
  * @returns A vector with the same magnitude of the input vector, 
- *          pointing the opposite way.
+ *          pointing the opposite way, or NULL of a problem occurred.
  */
 Vector *vector_negate(Vector *vector);
-
-/**
- * @brief Normalises a given Vector.
- *
- * @param vector The Vector to be normalised.
- */
-void *normalise(Vector *vector);
 
 /**
  * @brief Calculates the magnitude of a Vector.
@@ -160,6 +126,25 @@ void *normalise(Vector *vector);
  * 
  * @returns The magnitude of the Vector.
 */
-double *magnitude(Vector *vector);
+double magnitude(Vector *vector);
+
+/**
+ * @brief Normalises a given Vector.
+ *
+ * @param vector The Vector to be normalised.
+ * 
+ * @returns The normalised Vector, NULL if a problem occurred.
+ */
+Vector *normalise(Vector *vector);
+
+/**
+ * @brief Calulates of two Vectors are orthogonal.
+ *
+ * @param a The first Vector.
+ * @param b The second Vector.
+ * 
+ * @returns 1 if the Vectors are orthogonal, 0 otherwise.
+ */
+int orthogonal(Vector *a, Vector *b);
 
 #endif
