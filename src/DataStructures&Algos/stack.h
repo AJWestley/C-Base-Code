@@ -26,7 +26,7 @@
 /**
  * @brief Definition of a @ref Stack.
  */
-typedef struct _Stack {
+typedef struct stack {
     /** Entries in the stack */
     Item *items;
     /** Length of the stack */

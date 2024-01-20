@@ -23,7 +23,7 @@
 /**
  * @brief Definition of a @ref Vector
 */
-typedef struct _Vector {
+typedef struct vector {
     double* components;
     unsigned int length;
 } Vector;

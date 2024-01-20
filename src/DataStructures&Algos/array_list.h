@@ -27,7 +27,7 @@
 /**
  * @brief Definition of an @ref Array List.
  */
-typedef struct _ArrayList
+typedef struct arrayList
 {
     /** Entries in the Array List */
     Item *items;

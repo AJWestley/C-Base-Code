@@ -18,12 +18,10 @@
 #define SUCCESS 1
 #define FAILURE 0
 
-#endif
-
 /**
  * @brief Definition of a @ref Vector
  */
-typedef struct _Vector3D
+typedef struct vector3D
 {
     double x;
     double y;
@@ -130,3 +128,5 @@ Vector3D *normalise(Vector3D *vector);
  * @returns 1 if the 3D Vectors are orthogonal, 0 otherwise.
  */
 int orthogonal(Vector3D *a, Vector3D *b);
+
+#endif

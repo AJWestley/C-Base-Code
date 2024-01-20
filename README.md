@@ -5,7 +5,17 @@ A few handy C utilities for my own use.
 ## Implemented
 
 ### Data Structures and Algorithms
+
+#### Collections:
 - Stack
+- Linked List
+
+### Maths
+
+#### Linear Algebra:
+- Generic Vector
+- 2D Vector
+- 3D Vector
 
 ## In Progress:
 
@@ -13,21 +23,28 @@ A few handy C utilities for my own use.
 
 #### Collections:
 - Array List
+- Queue
 
 ### Maths
-
-#### Linear Algebra:
-- Vector
-  - Dot Product
-  - Cross Product
+#### Co-ordinates:
+- Point2D
+  - 2D Cartesian
+  - Polar
+  - To 3D Point
+- Point3D
+  - 3D Cartesian
+  - Spherical
+  - Cylindrical
+  - To 2D Point
+- Distance Measures:
+  - Euclidean Distance
+  - Manhattan Distance
 
 ## To Do List:
 
 ### Data Structures and Algorithms
 
 #### Collections:
-- Linked List
-- Queue
 - Hash Map
 - Heap
 #### Trees:
@@ -44,19 +61,6 @@ A few handy C utilities for my own use.
 - Floyd
 
 ### Maths
-#### Co-ordinates:
-- Point2D
-  - 2D Cartesian
-  - Polar
-  - To 3D Point
-- Point3D
-  - 3D Cartesian
-  - Spherical
-  - Cylindrical
-  - To 2D Point
-- Distance Measures:
-  - Euclidean Distance
-  - Manhattan Distance
 #### Linear Algebra:
 - Matrix
   - Matrix Addition 
