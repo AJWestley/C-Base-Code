@@ -17,21 +17,7 @@
 #define SUCCESS 1
 #define FAILURE 0
 
-// Define this as the datatype you wish the Linked List to be.
-// Can be done in the file this is incuded by defining Item before the include.
-#ifndef Item
-#define Item double
-#endif
-
-/**
- * @brief Definition of a @ref Linked List Node.
- */
-typedef struct node {
-    /** The value of the Node */
-    Item value;
-    /** Pointer to the next Node */
-    struct node *next;
-} Node;
+#include "node.h"
 
 /**
  * @brief Definition of a @ref Linked List.
@@ -42,22 +28,6 @@ typedef struct linkedList {
     /** Number of Nodes in the Linked List*/
     unsigned int size;
 } LinkedList;
-
-/**
- * @brief Allocate a new Node for use.
- * 
- * @param value The value of the initialised Node.
- *
- * @returns Node*
- */
-Node *node_new(Item value);
-
-/**
- * @brief Destroy a Node and free back the memory.
- *
- * @param node The Node to free.
- */
-void node_free(Node *node);
 
 /**
  * @brief Allocate a new Linked List for use.
