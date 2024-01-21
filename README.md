@@ -1,13 +1,16 @@
 # C Base Code
 
-A few handy C utilities for my own use.
+A few handy C utilities for my own use. </br> </br>
+
+*The code files in this repository are only tested when used in outside projects* </br>
+*The tested file have been marked with ✔️*
 
 ## Implemented
 
 ### Data Structures and Algorithms
 
 #### Collections:
-- Stack
+- Stack ✔️
 - Linked List
 - Queue
 
@@ -29,6 +32,7 @@ A few handy C utilities for my own use.
 
 #### Misc:
 - Sieve of Eratosthenes
+- Euclids Algorithm ✔️
 
 ## In Progress:
 
@@ -42,9 +46,6 @@ A few handy C utilities for my own use.
 
 #### Statistics:
 - Probability Distributions
-
-#### Misc:
-- Euclids Algorithm
 
 ## To Do List:
 

@@ -1,5 +1,5 @@
 /**
- * @file aratosthenes.h
+ * @file eratosthenes.h
  *
  * @author AJ Westley (alexanderjwestley@gmail.com)
  *
