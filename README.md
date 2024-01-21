@@ -16,6 +16,9 @@ A few handy C utilities for my own use.
 #### Co-ordinates:
 - Point2D
   - Polar Conversion
+- Point3D
+  - Spherical Conversion
+- Distance Measures:
   - Euclidean Distance
   - Manhattan Distance
 
@@ -23,6 +26,9 @@ A few handy C utilities for my own use.
 - Generic Vector
 - 2D Vector
 - 3D Vector
+
+#### Misc:
+- Sieve of Eratosthenes
 
 ## In Progress:
 
@@ -33,13 +39,12 @@ A few handy C utilities for my own use.
 - Hash Map
 
 ### Maths
-#### Co-ordinates:
-- Point3D
-  - 3D Cartesian
-  - Spherical
-- Distance Measures:
-  - Euclidean Distance
-  - Manhattan Distance
+
+#### Statistics:
+- Probability Distributions
+
+#### Misc:
+- Euclids Algorithm
 
 ## To Do List:
 
@@ -47,10 +52,12 @@ A few handy C utilities for my own use.
 
 #### Collections:
 - Heap
+
 #### Trees:
 - Binary Search Tree
 - Red Black Balanced Search Tree
 - Trie
+
 #### Graphs:
 - Adjacency Matrix
 - BFS & DFS
@@ -61,6 +68,7 @@ A few handy C utilities for my own use.
 - Floyd
 
 ### Maths
+
 #### Linear Algebra:
 - Matrix
   - Matrix Addition 
@@ -69,10 +77,7 @@ A few handy C utilities for my own use.
   - Hadamard Product
   - Matrix Transpose
 - Eigenvectors & Eigenvalues
+
 #### Fourier Analysis:
 - Fourier Matrix
 - Radix-2 FFT
-#### Statistics:
-- Probability Distributions
-#### Misc:
-- Sieve of Eratosthenes
