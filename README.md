@@ -3,7 +3,7 @@
 A few handy C utilities for my own use. </br> </br>
 
 *The code files in this repository are only tested when used in outside projects* </br>
-*The tested file have been marked with ✔️*
+*The tested files have been marked with ✔️*
 
 ## Implemented
 
