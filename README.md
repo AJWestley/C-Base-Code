@@ -10,6 +10,7 @@ A few handy C utilities for my own use. </br> </br>
 ### Data Structures and Algorithms
 
 #### Collections:
+- Array List
 - Stack ✔️
 - Linked List
 - Queue
@@ -39,7 +40,6 @@ A few handy C utilities for my own use. </br> </br>
 ### Data Structures and Algorithms
 
 #### Collections:
-- Array List
 - Hash Map
 
 ### Maths
@@ -52,7 +52,8 @@ A few handy C utilities for my own use. </br> </br>
 ### Data Structures and Algorithms
 
 #### Collections:
-- Heap
+- Max-Heap
+- Min-Heap
 
 #### Trees:
 - Binary Search Tree

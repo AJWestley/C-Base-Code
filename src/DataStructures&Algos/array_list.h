@@ -202,4 +202,9 @@ int merge_sort(ArrayList *list);
  */
 int quick_sort(ArrayList *list);
 
+/**
+ * @brief Comparison function for qsort
+*/
+int cmpfunc (void *a, void *b);
+
 #endif

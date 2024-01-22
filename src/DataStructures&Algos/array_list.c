@@ -140,17 +140,76 @@ void reverse(ArrayList *list) {
     }
 }
 
-// TODO:
 int insertion_sort(ArrayList *list) {
-    return FAILURE;
+    for (int i = 1; i < list->length; i++) {
+        int j = i - 1;
+        while (j >= 0 && get(i, list) < get(j, list)) {
+            list->items[j+1] = get(j, list);
+            j--;
+        }
+        list->items[j+1] = get(i, list);
+    }
+    return SUCCESS;
 }
 
-// TODO:
 int merge_sort(ArrayList *list) {
-    return FAILURE;
+    if (list->length <= 1) return SUCCESS;
+
+    int mid = (int) (list->length / 2);
+
+    ArrayList *L = array_list_new(mid);
+    if (!L) return FAILURE;
+    
+    ArrayList *R = array_list_new(list->length - mid);
+    if (!R) return FAILURE;
+
+    for (int i = 0; i < L->length; i++) {
+        L->items[i] = list->items[i];
+    }
+    for (int i = 0; i < R->length; i++) {
+        R->items[i] = list->items[i+mid];
+    }
+    
+    if (!merge_sort(L)) return FAILURE;
+    if (!merge_sort(R)) return FAILURE;
+
+    int i = 0, j = 0, k = 0;
+
+    while (i < L->length && j < R->length) {
+        if (get(i, L) <= get(j, R)) {
+            list->items[k] = get(i, L);
+            i++;
+        }
+        else {
+            list->items[k] = get(j, R);
+            j++;
+        }
+        k++;
+    }
+
+    while (i < L->length) {
+        list->items[k] = get(i, L);
+        i++;
+        k++;
+    }
+
+    while (j < R->length) {
+        list->items[k] = get(j, R);
+        j++;
+        k++;
+    }
+
+    array_list_free(L);
+    array_list_free(R);
+
+    return SUCCESS;
 }
 
-// TODO:
 int quick_sort(ArrayList *list) {
-    return FAILURE;
+    qsort(list->items, list->length, sizeof(Item), cmpfunc);
+    return SUCCESS;
+}
+
+int cmpfunc(void *a, void *b) {
+   return ( *(Item*)a - *(Item*)b );
 }
