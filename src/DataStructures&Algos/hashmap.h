@@ -33,36 +33,42 @@ typedef struct hashItem {
     struct hashItem *next;
 } HashItem;
 
-typedef int (*HashFunc)(Key key);
+typedef int (*HashFunc)(Key key, int length);
+
+typedef int (*CmpFunc)(Key a, Key b);
 
 typedef struct hashMap {
     /** The number of buckets in the Hash Map */
     unsigned int size;
+    /** The number of key-value pairs in the Hash Map */
+    unsigned int item_count;
     /** The Hash Map's buckets */
-    HashItem *buckets;
+    HashItem **buckets;
     /** A function to hash items into the Hash Map */
     HashFunc hash;
+    /** A function to compare keys in the Hash Map */
+    CmpFunc cmp;
 } HashMap;
 
 /**
  * @brief A default function for hashing chars.
 */
-int default_char_hash(char key);
+int default_char_hash(char key, int length);
 
 /**
  * @brief A default function for hashing strings.
  */
-int default_string_hash(char *key);
+int default_string_hash(char *key, int length);
 
 /**
  * @brief A default function for hashing ints.
  */
-int default_int_hash(int key);
+int default_int_hash(int key, int length);
 
 /**
  * @brief A default function for hashing doubles.
  */
-int default_double_hash(double key);
+int default_double_hash(double key, int length);
 
 /**
  * @brief Allocates a new Hash Map for use.
@@ -72,14 +78,14 @@ int default_double_hash(double key);
  * 
  * @returns *HashMap
  */
-HashMap *hashmap_new(unsigned int size, HashFunc hashfunc);
+HashMap *hashmap_new(unsigned int size, HashFunc hashfunc, CmpFunc cmp);
 
 /**
  * @brief Destroys a Hash Map and frees the memory back.
  * 
  * @param map The Hash Map to free.
 */
-void hashmap_free(HashMap map);
+void hashmap_free(HashMap *map);
 
 /**
  * @brief Inserts a key-value pair into a Hash Map.
@@ -89,7 +95,7 @@ void hashmap_free(HashMap map);
  * 
  * @returns 1 if the insertion was successful, 0 otherwise.
 */
-int insert(Key key, Value val, HashMap map);
+int insert(Key key, Value val, HashMap *map);
 
 /**
  * @brief Inserts a key-value pair into a Hash Map if the key is not already present.
@@ -100,7 +106,7 @@ int insert(Key key, Value val, HashMap map);
  *
  * @returns 1 if the insertion was successful, 0 otherwise.
  */
-int insert_if_absent(Key key, Value val, HashMap map);
+int insert_if_absent(Key key, Value val, HashMap *map);
 
 /**
  * @brief Removes a key (and its associated value) from a Hash Map.
@@ -110,7 +116,7 @@ int insert_if_absent(Key key, Value val, HashMap map);
  *
  * @returns 1 if the removal was successful, 0 otherwise.
  */
-int remove(Key key, HashMap map);
+int remove(Key key, HashMap *map);
 
 /**
  * @brief Removes all occurrences a key (and its associated values) from a Hash Map.
@@ -120,18 +126,7 @@ int remove(Key key, HashMap map);
  *
  * @returns The number of key-value pairs that were removed.
  */
-int remove_all(Key key, HashMap map);
-
-/**
- * @brief Removes a key-value pair from a Hash Map.
- *
- * @param key The key to remove.
- * @param val The associated value to remove.
- * @param map The Hash Map to remove from.
- *
- * @returns 1 if the removal was successful, 0 otherwise.
- */
-int remove_pair(Key key, Value val, HashMap map);
+int remove_all(Key key, HashMap *map);
 
 /**
  * @brief Gets the associated value to a key in a Hash Map.
@@ -141,7 +136,7 @@ int remove_pair(Key key, Value val, HashMap map);
  *
  * @returns A pointer to found value, NULL if the value does not exist.
  */
-Value *get(Key key, HashMap map);
+Value *get(Key key, HashMap *map);
 
 /**
  * @brief Sets a key's value in a Hash Map.
@@ -152,7 +147,7 @@ Value *get(Key key, HashMap map);
  *
  * @returns 1 if the value was successfully set, 0 otherwise.
  */
-int set(Key key, Value new_val, HashMap map);
+int set(Key key, Value new_val, HashMap *map);
 
 /**
  * @brief Sets a key's value in a Hash Map.
@@ -164,7 +159,7 @@ int set(Key key, Value new_val, HashMap map);
  *
  * @returns 1 if the value was successfully set, 0 otherwise.
  */
-int set_pair(Key key, Value val, Value new_val, HashMap map);
+int set_pair(Key key, Value val, Value new_val, HashMap *map);
 
 /**
  * @brief Checks for a given key in a Hash Map.
@@ -174,7 +169,7 @@ int set_pair(Key key, Value val, Value new_val, HashMap map);
  *
  * @returns 1 if the key is in the Hash Map, 0 otherwise.
  */
-int contains_key(Key key, HashMap map);
+int contains_key(Key key, HashMap *map);
 
 /**
  * @brief Checks for a given value in a Hash Map.
@@ -184,7 +179,7 @@ int contains_key(Key key, HashMap map);
  *
  * @returns 1 if the value is in the Hash Map, 0 otherwise.
  */
-int contains_value(Value val, HashMap map);
+int contains_value(Value val, HashMap *map);
 
 /**
  * @brief Checks if a Hash Map is empty.
@@ -193,13 +188,13 @@ int contains_value(Value val, HashMap map);
  *
  * @returns 1 if the Hash Map is empty, 0 otherwise.
  */
-int empty(HashMap map);
+int empty(HashMap *map);
 
 /**
  * @brief Removes all key-value pairs from a Hash Map.
  *\
  * @param map The Hash Map to clear.
  */
-void clear(HashMap map);
+void clear(HashMap *map);
 
 #endif
