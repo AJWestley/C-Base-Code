@@ -9,6 +9,7 @@
 
 #include "hashmap.h"
 #include <stdlib.h>
+#include <string.h>
 #include <math.h>
 
 int default_char_hash(char key, int length) {
@@ -55,15 +56,19 @@ HashMap *hashmap_new(unsigned int size, HashFunc hashfunc, CmpFunc cmp) {
 }
 
 void hashmap_free(HashMap *map) {
-    for (int i = 0; i < map->size; i++) {
+    for (int i = 0; i < map->size; i++)
+    {
         HashItem *current = map->buckets[i];
         HashItem *prev;
-        while (current) {
+        while (current)
+        {
             prev = current;
             current = current->next;
             free(prev);
         }
     }
+    free(map->buckets);
+    free(map);
 }
 
 int insert(Key key, Value val, HashMap *map) {
@@ -158,4 +163,44 @@ Value *get(Key key, HashMap *map) {
     }
 
     return NULL;
+}
+
+int set(Key key, Value new_val, HashMap *map) {
+    int loc = map->hash(key, map->size);
+
+    HashItem *current = map->buckets[loc];
+
+    while (current && current->next)
+    {
+        if (map->cmp(key, current->key) == 0) {
+            current->value = new_val;
+            return SUCCESS;
+        }
+    }
+
+    return FAILURE;
+}
+
+int contains(Key key, HashMap *map) {
+    return get(key, map) ? TRUE : FALSE;
+}
+
+int empty(HashMap *map) {
+    return map->item_count == 0 ? TRUE : FALSE;
+}
+
+void clear(HashMap *map) {
+    for (int i = 0; i < map->size; i++)
+    {
+        HashItem *current = map->buckets[i];
+        HashItem *prev;
+        while (current)
+        {
+            prev = current;
+            current = current->next;
+            free(prev);
+        }
+    }
+    memset(map->buckets, '\0', map->size * sizeof(HashItem*));
+    map->item_count = 0;
 }

@@ -150,18 +150,6 @@ Value *get(Key key, HashMap *map);
 int set(Key key, Value new_val, HashMap *map);
 
 /**
- * @brief Sets a key's value in a Hash Map.
- *
- * @param key The key to set.
- * @param val The value to change from.
- * @param new_val The new value to change to.
- * @param map The Hash Map.
- *
- * @returns 1 if the value was successfully set, 0 otherwise.
- */
-int set_pair(Key key, Value val, Value new_val, HashMap *map);
-
-/**
  * @brief Checks for a given key in a Hash Map.
  *
  * @param key The key to look for.
@@ -169,17 +157,7 @@ int set_pair(Key key, Value val, Value new_val, HashMap *map);
  *
  * @returns 1 if the key is in the Hash Map, 0 otherwise.
  */
-int contains_key(Key key, HashMap *map);
-
-/**
- * @brief Checks for a given value in a Hash Map.
- *
- * @param val The value to look for.
- * @param map The Hash Map to look through.
- *
- * @returns 1 if the value is in the Hash Map, 0 otherwise.
- */
-int contains_value(Value val, HashMap *map);
+int contains(Key key, HashMap *map);
 
 /**
  * @brief Checks if a Hash Map is empty.

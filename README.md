@@ -14,6 +14,7 @@ A few handy C utilities for my own use. </br> </br>
 - Stack ✔️
 - Linked List
 - Queue
+- Hash Map
 
 ### Maths
 
@@ -40,7 +41,8 @@ A few handy C utilities for my own use. </br> </br>
 ### Data Structures and Algorithms
 
 #### Collections:
-- Hash Map
+- Max-Heap
+- Min-Heap
 
 ### Maths
 
@@ -50,10 +52,6 @@ A few handy C utilities for my own use. </br> </br>
 ## To Do List:
 
 ### Data Structures and Algorithms
-
-#### Collections:
-- Max-Heap
-- Min-Heap
 
 #### Trees:
 - Binary Search Tree
